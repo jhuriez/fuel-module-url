@@ -179,7 +179,7 @@ class Controller_Backend_Index extends \Url\Controller_Backend
             {
                 $this->data['error'] = __('url.error_widget');
             }
-            return \View::forge('backend/widget')->set($this->data);
+            return \Theme::instance()->view('backend/widget')->set($this->data);
         }
     }
 
