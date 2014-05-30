@@ -16,10 +16,11 @@ This module can  be used as a basis to create your own section to manage the Fue
 # Installation
 
 1. This module uses Theme class, you must create your theme folder.
-2. Clone or download the fuel-module-url repository
-3. Move it into your module folder, and rename it to "url"
-4. Open your oil console
-5. Run `oil refine url::url:install [your_public_folder] [your_theme]` to generate needed files (copy js and css files in assets folder). 
+2. You need to install the Lb Package : [See more](http://github.com/jhuriez/fuel-lb-package)
+3. Clone or download the fuel-module-url repository
+4. Move it into your module folder, and rename it to "url"
+5. Open your oil console
+6. Run `oil refine url::url:install [your_public_folder] [your_theme]` to generate needed files (copy js and css files in assets folder). 
 * [your_public_folder] is optionnally if your public folder is not named "public"
 * [your_theme] is if you use a theme other than the default theme
 
@@ -35,12 +36,14 @@ In `modules/url/classes/controller/backend.php` at line 5 :
   class Controller_Backend extends \Controller_Base_Backend
 ```
 
-You can see an example of a simple controller using theme here : [`url/example/simple_controller.php`](https://github.com/jhuriez/fuel-module-url/blob/master/example/simple_controller.php)
-
+You can see an example of a simple controller using theme here : [`url/example/simple_controller.php`](https://github.com/jhuriez/fuel-lb-package/blob/master/example/simple_controller.php)
 
 ## Theme
 
 It uses the Theme class from FuelPHP, consequently you need to have a theme for your administration.
+
+You need to load jQuery and jQuery UI, and optionnaly Twitter Bootstrap v3 + Font Awesome
+For this, see the docs in Lb Package wiki : [Here](http://github.com/jhuriez/fuel-lb-package/blob/master/wiki/theme.md)
 
 ## Implementation
 
@@ -51,29 +54,8 @@ All variables used in the template file from theme :
 * `<?= \Theme::instance()->asset->render('css_plugin'); ?>` in the head
 * `<?= \Theme::instance()->asset->render('js_core'); ?>` in the head
 * `<?= \Theme::instance()->asset->render('js_plugin'); ?>` in the footer
-* Your need to load jQuery and jQuery UI, and optionnaly Twitter Bootstrap v3
 
-You can see an example of template here : [`url/example/template.php`](https://github.com/jhuriez/fuel-module-url/blob/master/example/template.php)
-
-## Config file
-
-file url.php in `app/config` :
-
-```php
-return array(
-	...,
-	'module' => array(
-		'use_casset' => false, // If you use Casset instead of Asset
-		'force_jquery' => false, // Load jQuery library
-		'force_bootstrap' => false, // Load Bootstrap library (js and css)
-		'force_font-awesome' => false, // Load FontAwesome library
-		'assets' => array(
-			'css_plugin' => 'css', // Set the asset group "css" instead of "css_plugin",
-		),
-	),
-	...,
-);
-```
+You can see an example of template here : [`menu/example/template.php`](http://github.com/jhuriez/fuel-lb-package/blob/master/example/template.php)
 
 ## Widget
 
@@ -82,20 +64,6 @@ You can use the widget "URL shortener" wherever on your project :
 ```php
 \Request::forge('url/backend/index/widget', false)->execute();
 ```
-
-## Change assets groups name
-
-In your theme you don't want to use the asset group "css_plugin", but just "css" ? No problem, you can change it in the config file !
-
-### jQuery
-
-The module need jQuery et jQuery UI external libraries. If you have already these libraries in your theme, it's good.
-
-But if you want to force to load the jquery library, you need to set "force_jquery" at true in the url config file.
-
-### Bootstrap & FontAwesome
-
-This is the same for Bootstrap and Fontawesome librairies 
 
 # Usage
 
@@ -106,11 +74,8 @@ Access the backoffice at : http://your-fuel-url/url/backend
 - Fuel\Core\ThemeException [ Error ]: Theme "default" could not be found.
 It's because this module uses Themes for better flexibility. You must create a theme folder, by default it's DOCROOT/themes/default.
 
-- ErrorException [ Fatal Error ]: Class 'Controller_Base_Backend' not found.
-It's because the controller \Url\Controller_Backend need to extends your admin controller in your project. In my case, the admin controller is named \Controller_Base_Backend
-
-- JS and CSS files are not loaded!
-Be sure you have enabled 'force_jquery', 'force_bootstrap' and 'force_font-awesome' in config url file, for load js&css files. 
+- ErrorException [ Fatal Error ]: Class '\Backend\Controller_Backend' not found.
+It's because the controller \Url\Controller_Backend need to extends your admin controller in your project. In my case, the admin controller is named \Backend\Controller_Backend
 
 # Override Theme
 
