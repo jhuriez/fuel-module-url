@@ -94,7 +94,7 @@ class Controller_Backend_Index extends \Url\Controller_Backend
             {
                 // Set params for save the url
                 $data = array(
-                    'slug'        => \Inflector::friendly_title($form->validated('slug')),
+                    'slug'        => $form->validated('slug'),
                     'url_target' => $form->validated('url_target'),
                     'code'        => $form->validated('code'),
                     'description' => $form->validated('description'),
