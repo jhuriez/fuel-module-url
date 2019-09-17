@@ -92,6 +92,8 @@ class Controller_Backend_Index extends \Url\Controller_Backend
             // if validated, create the object
             if (!$form->validation()->error())
             {
+                $expiredAt = ($form->validated('expired_at')) ? : null;
+
                 // Set params for save the url
                 $data = array(
                     'slug'        => $form->validated('slug'),
@@ -100,6 +102,8 @@ class Controller_Backend_Index extends \Url\Controller_Backend
                     'description' => $form->validated('description'),
                     'method'      => $form->validated('method'),
                     'active'      => $form->validated('active'),
+                    'is_download' => $form->validated('is_download'),
+                    'expired_at'  => $expiredAt,
                 );
                 $url->from_array($data);
 

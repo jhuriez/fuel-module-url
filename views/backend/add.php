@@ -23,6 +23,8 @@
           <?= $form->field('code')->set_attribute(array('class' => 'form-control')); ?>
           <?= $form->field('method')->set_attribute(array('class' => 'form-control')); ?>
           <?= $form->field('description')->set_attribute(array('class' => 'form-control')); ?>
+          <?= $form->field('is_download')->set_attribute(array('class' => 'form-control')); ?>
+          <?= $form->field('expired_at')->set_attribute(array('class' => 'form-control')); ?>
           <?= $form->field('active')->set_attribute(array('class' => 'form-control')); ?>
           <?= $form->field('add'); ?>
         </div>

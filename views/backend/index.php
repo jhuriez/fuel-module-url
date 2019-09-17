@@ -30,7 +30,7 @@
 						<tr id="object-<?= $url->id; ?>" data-id="<?= $url->id; ?>">
 							<td><?= $url->id; ?></td>
 							<td><a href="<?= \LbUrl\Helper_Url::getUrl($url, true); ?>" target="_blank"><?= $url->slug; ?></a></td>
-							<td><?= $url->url_target ?></td>
+							<td><?= \Str::truncate($url->url_target, 55); ?></td>
 							<td><?= $url->method ?></td>
 							<td><?= $url->code ?></td>
 							<td><?= $url->hits; ?></td>
